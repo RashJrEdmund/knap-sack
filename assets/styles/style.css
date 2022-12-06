@@ -11,29 +11,39 @@ body {
   background-color: burlywood;
   display: flex;
   flex-direction: column;
+  width: fit-content;
   max-width: 300px;
+  height: fit-content;
   margin: auto;
   border: 1px solid #d3d3d3;
-  position: relative;
 }
 
 select  {
   background-color: burlywood;
   width: 100%;
+  height: fit-content;
   word-wrap: break-word;
   padding: 1rem;
-  position: absolute;
-  right: -300px;
 }
 
 .whole > div {
-  background-color: pink;
+  background-color: gold;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
   padding: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+.whole > div > div {
+  background-color: green;
 }
 
 textarea {
-  width: 99%;
   border: none;
+  width: 100%;
+  height: 100%;
   max-height: fit-content;
 }
 
