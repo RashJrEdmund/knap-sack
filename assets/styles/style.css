@@ -1,8 +1,54 @@
+* {
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 .whole {
-    display: flex;
-    flex-direction: column;
+  background-color: burlywood;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+  border: 1px solid #d3d3d3;
+  position: relative;
+}
+
+select  {
+  background-color: burlywood;
+  width: 100%;
+  word-wrap: break-word;
+  padding: 1rem;
+  position: absolute;
+  right: -300px;
+}
+
+.whole > div {
+  background-color: pink;
+  padding: 10px;
+}
+
+textarea {
+  width: 99%;
+  border: none;
+  max-height: fit-content;
+}
+
+button {
+  background-color: gold;
+  border-radius: 5px;
+  border: none;
+  height: 2rem;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+button:nth-of-type(2) {
+  background-color: green;
+  margin-top: 2rem;
 }
