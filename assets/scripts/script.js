@@ -1,13 +1,14 @@
-let maxWeight = document.querySelector('.max-wieght').value
+let maxWeight = document.querySelector('.weight-input')
 let selectDropdown = document.querySelector(".input-list");
-
 let selectedItems = document.querySelector('.selected-val')
-let capacity = document.querySelector('.capacity')
-let clearBtn = document.querySelector('.back')
-let addBtn = document.querySelector('.add')
+let statusBtn = document.querySelector('.status')
+let backBtn = document.querySelector('.back-btn')
 let submitBtn = document.querySelector('.submit')
+let capacity = document.querySelector('.max-weight')
 let clearAllBtn = document.querySelector('.clear-all')
+let erroCount = 0;
 
+// it is with aid of this that i am able to use values as refrences.
 const jsonArray = [
     { name: "fish", weight: 4, value: 1500 },
     { name: "meat", weight: 4, value: 1500 },
@@ -22,24 +23,86 @@ const jsonArray = [
     { name: "Mercedes Benz", weight: 1000, value: 10e9 }
 ]
 
+// creating my object
+let knapsack = {
+    capacity: 0,
+    weight: 0,
+    value: 0,
+    items: []
+}
+console.log(`this yo knapsack before: ${knapsack}`)
+
 selectDropdown.addEventListener("change", () => {
+    maxWeight.style.border = 'none'
     let OptVal = selectDropdown.value;
+    knapsack.capacity = maxWeight.value
+    capacity.innerHTML = `max weight: ${knapsack.capacity}kg` // this assigns the iput capacity value to the capacity div
 
-    let weightSum = 0;
 
-    let weightTracker = Number(jsonArray[OptVal].weight)
-    console.log(`weightTracker for ${jsonArray[OptVal].name} = ${weightTracker++}`)
-    console.log(`weight tracker type = ${typeof(weightTracker)}`)
+    if ((maxWeight.value == '') || (maxWeight.value < 0)) {
+       if(erroCount > 0){
+           maxWeight.style.border = '2px solid red'
+           alert('your knapsack input field must have a max weight')
+       }else {
+            alert(`input a max-weight`)
+       } erroCount++
+    }else {
+        maxWeight.readonly = true
+        weightBtn = maxWeight.value
+        console.log(`max weight = ${maxWeight.value}kg`)
 
-    /* const jsonData = '{ "name": "John", "age": 22 }';
-    const obj = JSON.parse(jsonArray[OptVal].weight); */
+        console.log(`option val = ${OptVal}`)
 
-    console.log({OptVal})
-    selectedItems.innerHTML += `[${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf] <br/>`;
-    capacity.innerHTML = weightSum
 
-    // knapsack capacity will still be greater than knapsack weight + item weight
-    // add item to knapsack; updating the knapsack weight and value
-    // else alert that the knapsack is full
-    // finally display knapsack object
+        knapsack.weight += jsonArray[OptVal].weight
+        console.log(`knapSack current weight = ${knapsack.weight}kg`)
+
+        if (knapsack.weight > knapsack.capacity) {  // this if else fxn is used to make sure the next input weight does not exceed knapsack capacity
+            knapsack.weight -= jsonArray[OptVal].weight  // the -= is used here since the kapsack.weight would still increase. even when nothing is added to selected itmes inner html
+            alert('this item weight will exceed knapsack capacity')
+            alert(`knapsack space left = ${knapsack.capacity-knapsack.weight}kg`)
+            selectDropdown.readonly = true
+        }else {
+            if (knapsack.weight == knapsack.capacity) {
+                statusBtn.style.border = '2px solid blue'
+            }
+            if (knapsack.weight < knapsack.capacity) {
+                statusBtn.style.border = '2px solid green'
+            }
+
+            knapsack.items.push(`${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`); // one heck of a messed up pushing code line! buh it works just right
+
+            console.log(`knapSack items = ${knapsack.items}`)
+
+            console.log(`item weight ${jsonArray[OptVal].weight}`)
+
+            // selectedItems.innerHTML += `[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`;
+            
+            selectedItems.innerHTML = `${knapsack.items} <br/>`
+            statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
+        }
+    }
+})
+
+backBtn.addEventListener('click', () =>{
+    let OptVal = selectDropdown.value;
+    selectedItems.innerHTML = knapsack.items
+
+    console.log(`knapsack before pop: ${knapsack.items}`)
+
+    knapsack.items.pop(jsonArray[OptVal]);
+
+    console.log(`knapsack afterpop: ${knapsack.items}`)
+    selectedItems.innerHTML = `${knapsack.items} <br/>`
+
+
+    if((statusBtn.innerHTML != 0)||(statusBtn.innerHTML > 0)){
+        knapsack.weight -= jsonArray[OptVal].weight
+    }
+
+    statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
+})
+
+clearAllBtn.addEventListener('click', () =>{
+    window.location.reload(true)
 })
