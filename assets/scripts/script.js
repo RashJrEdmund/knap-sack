@@ -30,9 +30,13 @@ let knapsack = {
     value: 0,
     items: []
 }
+
 console.log(`this yo knapsack before: ${knapsack}`)
 
 selectDropdown.addEventListener("change", () => {
+
+    console.log(knapsack)
+
     maxWeight.style.border = 'none'
     let OptVal = selectDropdown.value;
     knapsack.capacity = maxWeight.value
@@ -53,7 +57,6 @@ selectDropdown.addEventListener("change", () => {
 
         console.log(`option val = ${OptVal}`)
 
-
         knapsack.weight += jsonArray[OptVal].weight
         console.log(`knapSack current weight = ${knapsack.weight}kg`)
 
@@ -70,8 +73,8 @@ selectDropdown.addEventListener("change", () => {
                 statusBtn.style.border = '2px solid green'
             }
 
-            knapsack.items.push(`${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf <br/>`); // one heck of a messed up pushing code line! buh it works just right
-            knapsack.items.join(' ')
+            knapsack.items.push(`[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`); // one heck of a messed up pushing code line! buh it works just right
+            knapsack.items.join('2')
             console.log(`knapSack items = ${knapsack.items}`)
 
             console.log(`item weight ${jsonArray[OptVal].weight}`)
@@ -84,17 +87,44 @@ selectDropdown.addEventListener("change", () => {
     }
 })
 
-backBtn.addEventListener('click', () =>{
+
+backBtn.addEventListener('click', () => {
+
+    // let OptValue
+    // let sum = 0;
+    // selectedItems.innerHTML = knapsack.items
+
+    // console.log(`knapsack before pop: ${knapsack.items}`)
+
+    // knapsack.items.pop();
+    // selectedItems.innerHTML = `${knapsack.items}`
+
+    // /* if((statusBtn.value != 0)||(statusBtn.innerHTML > 0)){
+    //     knapsack.weight -= jsonArray[OptValue].weight
+    // } */
+
+    // statusBtn.innerHTML -= `current weight: ${jsonArray[OptValue].weight}Kg`
+    // OptValue -= selectDropdown.value
+
+    let sumWeight = 0;
     let OptVal = selectDropdown.value;
+
+    for (let i=0; i<jsonArray.length; i++) {
+        if (knapsack.items[i] == jsonArray[i].name){
+            console.log(knapsack)
+            console.log(`sum: this is: '${knapsack.items[i]}' ${knapsack.items[i]}`)
+            sumWeight += jsonArray[i].weight
+        }
+    }
+
     selectedItems.innerHTML = knapsack.items
 
-    console.log(`knapsack before pop: ${knapsack.items}`)
+    console.log(`knapsack before pop: ${knapsack}`)
 
-    knapsack.items.pop(jsonArray[OptVal]);
+    knapsack.items.pop();
 
-    console.log(`knapsack afterpop: ${knapsack.items}`)
-    selectedItems.innerHTML = `${knapsack.items} <br/>`
-
+    console.log(`knapsack afterpop: ${knapsack}`)
+    selectedItems.innerHTML = `${knapsack} <br/>`
 
     if((statusBtn.innerHTML != 0)||(statusBtn.innerHTML > 0)){
         knapsack.weight -= jsonArray[OptVal].weight
@@ -103,6 +133,6 @@ backBtn.addEventListener('click', () =>{
     statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
 })
 
-clearAllBtn.addEventListener('click', () =>{
+clearAllBtn.addEventListener('click', () => {
     window.location.reload(true)
 })
