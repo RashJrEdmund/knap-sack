@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/style.css">
-    <script src="assets/scripts/script.js" defer></script>
+    <script src="assets/scripts/script2.js" defer></script>
     <title>Knap Sack</title>
 </head>
+
 <body>
-    <iem class="whole">
-        <input type="text" class="tex-tbox" placeholder="type in max weight of bag">
-        <div>
-            <select class="input" id="fav" placeholder="typ">
-                <option value="">intem 1</option>
-                <option value="">intem 2</option>
-                <option value="">intem 3</option>
-                <option value="">intem 4</option>
-                <option value="">intem 5</option>
-                <option value="">intem 6</option>
-                <option value="">intem 7</option>
-                <option value="">intem 8</option>
-                <option value="">intem 9</option>
-                <option value="">intem 10</option>
-                <option value="">intem 11</option>
-                <option value="">intem 12</option>
-                <option value="">intem 13</option>
-                <option value="">intem 14</option>
-                <option value="">intem 15</option>
-                <option value="">intem 16</option>
-                <option value="">intem 17</option>
-                <option value="">intem 18</option>
-                <option value="">intem 19</option>
-                <option value="">intem 20</option>
-            </select>
-    
-            <div>
-                <div>seletd values</div>
-                <textarea name="" id="" cols="30" rows="10" readonly></textarea>
+    <div class="whole">
+        <input type="text" class="weight-input" placeholder="type in max capacity of bag">
+
+        <select class="input-list" id="fav" placeholder="typ">
+            <option value="">items | (kg) | (XAF)</option>
+            <option value="0">fish</option>
+            <option value="1">meat</option>
+            <option value="2">oranges </option>
+            <option value="3">apples</option>
+            <option value="4">tomatoes</option>
+            <option value="5">Rice</option>
+            <option value="6">Yams</option>
+            <option value="7">groundnut</option>
+            <option value="8">oil</option>
+            <option value="9">mangoes</option>
+            <option value="10">benz &#128514;</option>
+        </select>
+
+        <button class="back-btn"> &#60;--</button>
+
+        <div class="container">
+            <div class="container-sub">
+                <p>Selected Items</p>
+                <div class="selected-val"></div>
+
+                <p>Status</p>
+                <div class="containerSub-sub">
+                    <div class="status">0</div>
+                    <div class="max-weight">0</div>
+                </div>
             </div>
         </div>
-        <button>add item</button>
-        <button>submit</button>
+
+        <div class="last-btns">
+            <button class="submit">submit Items</button>
+            <button class="clear-all">Clear all</button>
+        </div>
     </div>
-    
 </body>
 </html>
