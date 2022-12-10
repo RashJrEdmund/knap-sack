@@ -70,8 +70,8 @@ selectDropdown.addEventListener("change", () => {
                 statusBtn.style.border = '2px solid green'
             }
 
-            knapsack.items.push(`${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`); // one heck of a messed up pushing code line! buh it works just right
-
+            knapsack.items.push(`${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf <br/>`); // one heck of a messed up pushing code line! buh it works just right
+            knapsack.items.join(' ')
             console.log(`knapSack items = ${knapsack.items}`)
 
             console.log(`item weight ${jsonArray[OptVal].weight}`)

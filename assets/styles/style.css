@@ -8,6 +8,14 @@ body {
   background-color: #d3d3d3;
 }
 
+header {
+  font-size: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+}
+
 .whole {
   background-color: #deb887;
   display: flex;
@@ -15,7 +23,7 @@ body {
   width: fit-content;
   width: 400px;
   height: fit-content;
-  margin: 1rem auto;
+  margin: 2.1rem auto;
   border: 1px solid #d3d3d3;
 }
 
