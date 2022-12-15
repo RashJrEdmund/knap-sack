@@ -10,17 +10,17 @@ let erroCount = 0;
 
 // it is with aid of this that i am able to use values as refrences.
 const jsonArray = [
-  { name: "fish", weight: 4, value: 1500 },
-  { name: "meat", weight: 4, value: 1500 },
-  { name: "oranges", weight: 2, value: 200 },
-  { name: "apples", weight: 2, value: 200 },
-  { name: "tomatoes", weight: 2, value: 150 },
-  { name: "rice", weight: 3, value: 700 },
-  { name: "yams", weight: 5, value: 1500 },
-  { name: "groundnut", weight: 1, value: 500 },
-  { name: "oil", weight: 3, value: 1800 },
-  { name: "mangoes", weight: 2, value: 200 },
-  { name: "Mercedes Benz", weight: 1000, value: 10e9 }
+  { name: 'fish', weight: 4, value: 1500 },
+  { name: 'meat', weight: 4, value: 1500 },
+  { name: 'oranges', weight: 2, value: 200 },
+  { name: 'apples', weight: 2, value: 200 },
+  { name: 'tomatoes', weight: 2, value: 150 },
+  { name: 'rice', weight: 3, value: 700 },
+  { name: 'yams', weight: 5, value: 1500 },
+  { name: 'groundnut', weight: 1, value: 500 },
+  { name: 'oil', weight: 3, value: 1800 },
+  { name: 'mangoes', weight: 2, value: 200 },
+  { name: 'Mercedes Benz', weight: 1000, value: 10e9 }
 ]
 
 let weightTrackingArray = [];
@@ -116,7 +116,7 @@ submitBtn.addEventListener('click', () => {
     alert(`no items selected`)
     selectedItems.style.border = '2px solid red'
   } else {
-    alert(`item${knapsack.items.length > 1 ? "s have" : " has"} been submited`)
+    alert(`item${knapsack.items.length > 1 ? 's have' : ' has'} been submited`)
     selectDropdown.disabled = true
   }
 })
