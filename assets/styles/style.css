@@ -71,18 +71,17 @@ header {
   margin-bottom: 20px;
   padding: 10px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   word-break: break-all;
 }
 
-.containerSub-sub {
+.containersub-sub {
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 
-.container .containerSub-sub .status {
+.container .containersub-sub .status {
   border: 1px solid #000;
   background-color: #808080;
   border-top: none;
@@ -93,7 +92,7 @@ header {
   padding: 10px;
 }
 
-.container .containerSub-sub .max-weight {
+.container .containersub-sub .max-weight {
   border: 1px solid #000;
   background-color: #808080;
   border-top: none;
@@ -135,7 +134,7 @@ button {
   align-self: center;
 }
 
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 500px) {
   .whole {
     width: 95vw;
   }

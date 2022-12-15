@@ -41,12 +41,13 @@ selectDropdown.addEventListener("change", () => {
         maxWeight.style.border = '2px solid red'
         alert('your knapsack weight input field must have a max weight')
     } else{
+        maxWeight.disabled = 'true'
         maxWeight.style.border = 'none'
         selectedItems.style.border = 'none'
 
         let OptVal = selectDropdown.value;
 
-        knapsack.capacity = maxWeight.value
+        knapsack.capacity = parseInt(maxWeight.value)
         capacity.innerHTML = `max weight: ${knapsack.capacity}kg` // this assigns the iput capacity value to the capacity div
 
         maxWeight.readonly = true
@@ -57,6 +58,7 @@ selectDropdown.addEventListener("change", () => {
 
         if (knapsack.weight > knapsack.capacity) {  // this if else fxn is used to make sure the next input weight does not exceed knapsack capacity
             alert('this item weight will exceed knapsack capacity')
+            knapsack.weight -= weightTrackingArray[weightTrackingArray.length-1]
             alert(`knapsack space left = ${knapsack.capacity-knapsack.weight}kg`)
         }else {
             if (knapsack.weight == knapsack.capacity) {
@@ -76,8 +78,8 @@ selectDropdown.addEventListener("change", () => {
 
 
 backBtn.addEventListener('click', () => {
-    if (knapsack.weight == 0) {
-        maxWeight.removeAttribute(disabled)
+    if (knapsack.weight <= 0) {
+       selectDropdown.disabled = false
     }
     let sumWeight = 0;
 
@@ -90,6 +92,7 @@ backBtn.addEventListener('click', () => {
     if (knapsack.weight !== 0) {
         knapsack.weight -= weightTrackingArray[weightTrackingArray.length-1]
     }
+    console.log(`this is the weight: ${knapsack.weight}`)
 
     selectedItems.innerHTML = knapsack.items
     weightTrackingArray.pop()
@@ -114,7 +117,7 @@ submitBtn.addEventListener('click', () => {
         selectedItems.style.border = '2px solid red'
     } else {
         alert(`item${knapsack.items.length > 1? "s have":" has"} been submited`)
-        // year${age >1? "s": ""}
+        selectDropdown.disabled = true
     }
 })
 
