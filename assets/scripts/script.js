@@ -23,7 +23,11 @@ const jsonArray = [
     { name: "Mercedes Benz", weight: 1000, value: 10e9 }
 ]
 
+let weightTrackingArray = [];
+// let knapsack.weight = 0; // this variable handles both adding and subtracting the status weight
+
 // creating my object
+
 let knapsack = {
     capacity: 0,
     weight: 0,
@@ -31,40 +35,29 @@ let knapsack = {
     items: []
 }
 
-console.log(`this yo knapsack before: ${knapsack}`)
-
 selectDropdown.addEventListener("change", () => {
+    maxWeight.disabled = 'true'
+    if(maxWeight.value == ``) {
+        maxWeight.style.border = '2px solid red'
+        alert('your knapsack weight input field must have a max weight')
+    } else{
+        maxWeight.style.border = 'none'
+        selectedItems.style.border = 'none'
 
-    console.log(knapsack)
+        let OptVal = selectDropdown.value;
 
-    maxWeight.style.border = 'none'
-    let OptVal = selectDropdown.value;
-    knapsack.capacity = maxWeight.value
-    capacity.innerHTML = `max weight: ${knapsack.capacity}kg` // this assigns the iput capacity value to the capacity div
+        knapsack.capacity = maxWeight.value
+        capacity.innerHTML = `max weight: ${knapsack.capacity}kg` // this assigns the iput capacity value to the capacity div
 
-
-    if ((maxWeight.value == '') || (maxWeight.value < 0)) {
-       if(erroCount > 0){
-           maxWeight.style.border = '2px solid red'
-           alert('your knapsack input field must have a max weight')
-       }else {
-            alert(`input a max-weight`)
-       } erroCount++
-    }else {
         maxWeight.readonly = true
         weightBtn = maxWeight.value
-        console.log(`max weight = ${maxWeight.value}kg`)
 
-        console.log(`option val = ${OptVal}`)
-
-        knapsack.weight += jsonArray[OptVal].weight
-        console.log(`knapSack current weight = ${knapsack.weight}kg`)
+        weightTrackingArray.push(jsonArray[OptVal].weight)
+        knapsack.weight += weightTrackingArray[weightTrackingArray.length-1]
 
         if (knapsack.weight > knapsack.capacity) {  // this if else fxn is used to make sure the next input weight does not exceed knapsack capacity
-            knapsack.weight -= jsonArray[OptVal].weight  // the -= is used here since the kapsack.weight would still increase. even when nothing is added to selected itmes inner html
             alert('this item weight will exceed knapsack capacity')
             alert(`knapsack space left = ${knapsack.capacity-knapsack.weight}kg`)
-            selectDropdown.readonly = true
         }else {
             if (knapsack.weight == knapsack.capacity) {
                 statusBtn.style.border = '2px solid blue'
@@ -73,14 +66,8 @@ selectDropdown.addEventListener("change", () => {
                 statusBtn.style.border = '2px solid green'
             }
 
-            knapsack.items.push(`[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`); // one heck of a messed up pushing code line! buh it works just right
-            knapsack.items.join('2')
-            console.log(`knapSack items = ${knapsack.items}`)
+            knapsack.items.push(`[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`); // one messed up pushing code line! buh it works just right
 
-            console.log(`item weight ${jsonArray[OptVal].weight}`)
-
-            // selectedItems.innerHTML += `[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`;
-            
             selectedItems.innerHTML = `${knapsack.items} <br/>`
             statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
         }
@@ -89,48 +76,46 @@ selectDropdown.addEventListener("change", () => {
 
 
 backBtn.addEventListener('click', () => {
-
-    // let OptValue
-    // let sum = 0;
-    // selectedItems.innerHTML = knapsack.items
-
-    // console.log(`knapsack before pop: ${knapsack.items}`)
-
-    // knapsack.items.pop();
-    // selectedItems.innerHTML = `${knapsack.items}`
-
-    // /* if((statusBtn.value != 0)||(statusBtn.innerHTML > 0)){
-    //     knapsack.weight -= jsonArray[OptValue].weight
-    // } */
-
-    // statusBtn.innerHTML -= `current weight: ${jsonArray[OptValue].weight}Kg`
-    // OptValue -= selectDropdown.value
-
+    if (knapsack.weight == 0) {
+        maxWeight.removeAttribute(disabled)
+    }
     let sumWeight = 0;
-    let OptVal = selectDropdown.value;
 
     for (let i=0; i<jsonArray.length; i++) {
         if (knapsack.items[i] == jsonArray[i].name){
-            console.log(knapsack)
-            console.log(`sum: this is: '${knapsack.items[i]}' ${knapsack.items[i]}`)
             sumWeight += jsonArray[i].weight
         }
     }
 
-    selectedItems.innerHTML = knapsack.items
+    if (knapsack.weight !== 0) {
+        knapsack.weight -= weightTrackingArray[weightTrackingArray.length-1]
+    }
 
-    console.log(`knapsack before pop: ${knapsack}`)
+    selectedItems.innerHTML = knapsack.items
+    weightTrackingArray.pop()
 
     knapsack.items.pop();
 
-    console.log(`knapsack afterpop: ${knapsack}`)
-    selectedItems.innerHTML = `${knapsack} <br/>`
-
-    if((statusBtn.innerHTML != 0)||(statusBtn.innerHTML > 0)){
-        knapsack.weight -= jsonArray[OptVal].weight
-    }
-
+    selectedItems.innerHTML = `${knapsack.items} <br/>`
     statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
+})
+
+submitBtn.addEventListener('click', () => {
+    if ((maxWeight.value == '') || (maxWeight.value < 0)) {
+        if(erroCount > 0){
+            maxWeight.style.border = '2px solid red'
+            alert('your knapsack weight input field must have a max weight')
+        }else {
+             alert(`input a max-weight`)
+        } erroCount++
+    }
+    else if(selectedItems.innerHTML == ``) {
+        alert(`no items selected`)
+        selectedItems.style.border = '2px solid red'
+    } else {
+        alert(`item${knapsack.items.length > 1? "s have":" has"} been submited`)
+        // year${age >1? "s": ""}
+    }
 })
 
 clearAllBtn.addEventListener('click', () => {
