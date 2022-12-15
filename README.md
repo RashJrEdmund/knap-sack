@@ -19,7 +19,7 @@ This page is basically built with just
 
 ## CLONE PROJECT
 * open your terminal
-* type and run this comand (`git@github.com:RashJrEdmund/knap-sack.git`)
+* type and run this comand (`git clone git@github.com:RashJrEdmund/knap-sack.git`)
 * change to the project directory by entering: cd My-food
 * Note That: all this is done using your Linux terminal or git-bash for windows users.
 
