@@ -1,5 +1,5 @@
 const maxWeight = document.querySelector('.weight-input')
-const selectDropdown = document.querySelector(".input-list")
+const selectDropdown = document.querySelector('.input-list')
 const selectedItems = document.querySelector('.selected-val')
 const statusBtn = document.querySelector('.status')
 const backBtn = document.querySelector('.back-btn')
@@ -65,7 +65,7 @@ selectDropdown.addEventListener('change', () => {
         statusBtn.style.border = '2px solid green'
       }
 
-      knapsack.items.push(`[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`); // one messed up pushing code line! buh it works just right
+      knapsack.items.push(`[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`) // one messed up pushing code line! buh it works just right
 
       selectedItems.innerHTML = `${knapsack.items} <br/>`
       statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
@@ -73,15 +73,14 @@ selectDropdown.addEventListener('change', () => {
   }
 })
 
-
 backBtn.addEventListener('click', () => {
   if (knapsack.weight <= 0) {
     selectDropdown.disabled = false
   }
-  let sumWeight = 0;
+  let sumWeight = 0
 
   for (let i = 0; i < jsonArray.length; i++) {
-    if (knapsack.items[i] == jsonArray[i].name) {
+    if (knapsack.items[i] === jsonArray[i].name) {
       sumWeight += jsonArray[i].weight
     }
   }
@@ -106,10 +105,9 @@ submitBtn.addEventListener('click', () => {
       maxWeight.style.border = '2px solid red'
       alert('your knapsack weight input field must have a max weight')
     } else {
-      alert(`input a max-weight`)
+      alert('input a max-weight')
     } erroCount++
-  }
-  else if (selectedItems.innerHTML == '') {
+  } else if (selectedItems.innerHTML === '') {
     alert('no items selected')
     selectedItems.style.border = '2px solid red'
   } else {
