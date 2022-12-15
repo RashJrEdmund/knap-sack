@@ -109,7 +109,7 @@ submitBtn.addEventListener('click', () => {
       alert(`input a max-weight`)
     } erroCount++
   }
-  else if (selectedItems.innerHTML == '') {
+  else if (selectedItems.innerHTML == '') { 
     alert('no items selected')
     selectedItems.style.border = '2px solid red'
   } else {
