@@ -77,13 +77,6 @@ backBtn.addEventListener('click', () => {
   if (knapsack.weight <= 0) {
     selectDropdown.disabled = false
   }
-  let sumWeight = 0
-
-  for (let i = 0; i < jsonArray.length; i++) {
-    if (knapsack.items[i] === jsonArray[i].name) {
-      sumWeight += jsonArray[i].weight
-    }
-  }
 
   if (knapsack.weight !== 0) {
     knapsack.weight -= weightTrackingArray[weightTrackingArray.length - 1]
