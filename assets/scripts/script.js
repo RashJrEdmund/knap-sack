@@ -78,12 +78,12 @@ backBtn.addEventListener("click", () => {
     knapsack.weight -= weightTrackingArray[weightTrackingArray.length - 1]
   }
 
-  selectedItems.innerHTML = knapsack.items
+  selectedItems.innerHTML = knapsack.items.join("")
   weightTrackingArray.pop()
 
   knapsack.items.pop()
 
-  selectedItems.innerHTML = `${knapsack.items} <br/>`
+  selectedItems.innerHTML = `${knapsack.items.join("")} <br/>`
   statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
 })
 
