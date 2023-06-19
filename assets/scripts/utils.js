@@ -1,3 +1,3 @@
 export function doubble (n) {
-    return n * 2;
+  return n * 2
 }

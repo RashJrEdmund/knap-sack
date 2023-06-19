@@ -1,13 +1,13 @@
-const maxWeight = document.querySelector(".weight-input")
-const selectDropdown = document.querySelector(".input-list")
-const selectedItems = document.querySelector(".selected-val")
-const statusBtn = document.querySelector(".status")
-const backBtn = document.querySelector(".back-btn")
-const submitBtn = document.querySelector(".submit")
-const capacity = document.querySelector(".max-weight")
-const clearAllBtn = document.querySelector(".clear-all")
+import jsonArray from '../data/data.js'
 
-import jsonArray from "../data/data.json" assert { type: "json" }
+const maxWeight = document.querySelector('.weight-input')
+const selectDropdown = document.querySelector('.input-list')
+const selectedItems = document.querySelector('.selected-val')
+const statusBtn = document.querySelector('.status')
+const backBtn = document.querySelector('.back-btn')
+const submitBtn = document.querySelector('.submit')
+const capacity = document.querySelector('.max-weight')
+const clearAllBtn = document.querySelector('.clear-all') // assert { type: "json" };
 let erroCount = 0
 
 const weightTrackingArray = []
@@ -19,24 +19,27 @@ const knapsack = {
   capacity: 0,
   weight: 0,
   value: 0,
-  items: [],
+  items: []
 }
 
-maxWeight.addEventListener("input", ({ target }) => {
-  capacity.innerHTML = `max weight: ${+target.value}kg`
+maxWeight.addEventListener('input', (e) => {
+  capacity.innerHTML = `max weight: ${+e.target.value}kg`
 
-  maxWeight.style.border = "2px solid transparent"
+  maxWeight.style.border = '2px solid transparent'
 })
 
-selectDropdown.addEventListener("change", () => {
+selectDropdown.addEventListener('change', ({ target }) => {
   if (!maxWeight.value.trim() || isNaN(+maxWeight.value)) {
-    maxWeight.style.border = "2px solid red"
+    maxWeight.style.border = '2px solid red'
     return
   }
 
-  maxWeight.disabled = "true"
-  maxWeight.style.border = "none"
-  selectedItems.style.border = "none"
+  if (target.value === '') return
+
+  maxWeight.disabled = 'true'
+  maxWeight.style.border = 'none'
+  selectedItems.style.border = 'none'
+  capacity.style.border = 'none'
 
   const OptVal = selectDropdown.value
 
@@ -48,28 +51,28 @@ selectDropdown.addEventListener("change", () => {
 
   if (knapsack.weight > knapsack.capacity) {
     // this if else fxn is used to make sure the next input weight does not exceed knapsack capacity
-    alert("this item weight will exceed knapsack capacity")
     knapsack.weight -= weightTrackingArray[weightTrackingArray.length - 1]
-    alert(`knapsack space left = ${knapsack.capacity - knapsack.weight}kg`)
+    capacity.style.border = '2px solid red'
     return
   }
 
   if (knapsack.weight === knapsack.capacity) {
-    statusBtn.style.border = "2px solid blue"
+    statusBtn.style.border = '2px solid blue'
   }
+
   if (knapsack.weight < knapsack.capacity) {
-    statusBtn.style.border = "2px solid green"
+    statusBtn.style.border = '2px solid green'
   }
 
   knapsack.items.push(
-    `[ ${jsonArray[OptVal].name} |${jsonArray[OptVal].weight}kg |${jsonArray[OptVal].value}xaf ] <br/>`
+    `[ ${jsonArray[OptVal].name} | ${jsonArray[OptVal].weight}kg | ${jsonArray[OptVal].value}xaf ] <br/>`
   ) // one messed up pushing code line! buh it works just right
 
-  selectedItems.innerHTML = `${knapsack.items.join("")}`
+  selectedItems.innerHTML = `${knapsack.items.join('')}`
   statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
 })
 
-backBtn.addEventListener("click", () => {
+backBtn.addEventListener('click', () => {
   if (knapsack.weight <= 0) {
     selectDropdown.disabled = false
   }
@@ -78,33 +81,28 @@ backBtn.addEventListener("click", () => {
     knapsack.weight -= weightTrackingArray[weightTrackingArray.length - 1]
   }
 
-  selectedItems.innerHTML = knapsack.items.join("")
+  selectedItems.innerHTML = knapsack.items.join('')
   weightTrackingArray.pop()
 
   knapsack.items.pop()
 
-  selectedItems.innerHTML = `${knapsack.items.join("")} <br/>`
+  selectedItems.innerHTML = `${knapsack.items.join('')} <br/>`
   statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`
 })
 
-submitBtn.addEventListener("click", () => {
-  if (maxWeight.value === "" || maxWeight.value < 0) {
+submitBtn.addEventListener('click', () => {
+  if (maxWeight.value === '' || maxWeight.value < 0) {
     if (erroCount > 0) {
-      maxWeight.style.border = "2px solid red"
-      alert("your knapsack weight input field must have a max weight")
-    } else {
-      alert("input a max-weight")
+      maxWeight.style.border = '2px solid red'
     }
     erroCount++
-  } else if (selectedItems.innerHTML === "") {
-    alert("no items selected")
-    selectedItems.style.border = "2px solid red"
+  } else if (selectedItems.innerHTML === '') {
+    selectedItems.style.border = '2px solid red'
   } else {
-    alert(`item${knapsack.items.length > 1 ? "s have" : " has"} been submited`)
     selectDropdown.disabled = true
   }
 })
 
-clearAllBtn.addEventListener("click", () => {
+clearAllBtn.addEventListener('click', () => {
   window.location.reload(true)
 })
