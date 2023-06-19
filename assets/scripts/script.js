@@ -66,7 +66,6 @@ selectDropdown.addEventListener("change", () => {
   ); // one messed up pushing code line! buh it works just right
 
   selectedItems.innerHTML = `${knapsack.items.join("")}`;
-  console.log(knapsack.items.join(""));
   statusBtn.innerHTML = `current weight: ${knapsack.weight}Kg`;
 });
 
@@ -78,7 +77,6 @@ backBtn.addEventListener("click", () => {
   if (knapsack.weight !== 0) {
     knapsack.weight -= weightTrackingArray[weightTrackingArray.length - 1];
   }
-  console.log(`this is the weight: ${knapsack.weight}`);
 
   selectedItems.innerHTML = knapsack.items;
   weightTrackingArray.pop();
