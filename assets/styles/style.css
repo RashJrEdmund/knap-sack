@@ -119,6 +119,7 @@ button {
   border: none;
   padding: 10px 1rem;
   width: fit-content;
+  cursor: pointer;
 }
 
 .last-btns {
