@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/styles/style.css" />
     <title>Knap Sack</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>KnapSack</header>
     <div class="whole">
-        <input type="text" class="weight-input" placeholder="type in max capacity of bag">
+      <input
+        type="text"
+        class="weight-input"
+        placeholder="Type in max capacity of bag (kg)"
+      />
 
-        <select class="input-list" id="fav" placeholder="typ">
-            <option value="">items | (kg) | (XAF)</option>
-            <option value="0">fish</option>
-            <option value="1">meat</option>
-            <option value="2">oranges </option>
-            <option value="3">apples</option>
-            <option value="4">tomatoes</option>
-            <option value="5">Rice</option>
-            <option value="6">Yams</option>
-            <option value="7">groundnut</option>
-            <option value="8">oil</option>
-            <option value="9">mangoes</option>
-            <option value="10">benz &#128514;</option>
-        </select>
+      <select class="input-list" id="fav" placeholder="choose an item">
+        <option value="">Item | (kg) | (XAF)</option>
+        <option value="0">Fish | 4kg | 1500xaf</option>
+        <option value="1">Meat | 4kg | 1500xaf</option>
+        <option value="2">Oranges | 2kg | 200xaf</option>
+        <option value="3">Apples | 2kg | 200xaf</option>
+        <option value="4">Tomatoes | 2kg | 150xaf</option>
+        <option value="5">Rice | 3kg | 700xaf</option>
+        <option value="6">Yams | 5kg | 1500xaf</option>
+        <option value="7">Groundnut | 1kg | 500xaf</option>
+        <option value="8">Oil 3kg | 1800xaf</option>
+        <option value="9">Mangoes | 2kg | 200</option>
+        <option value="10">Garri | 5kg | 2500</option>
+      </select>
 
-        <button class="back-btn"> &#60;--</button>
+      <button class="back-btn">back</button>
 
-        <div class="container">
-            <div class="container-sub">
-                <p>Selected Items</p>
-                <div class="selected-val"></div>
+      <div class="container">
+        <div class="container-sub">
+          <p contenteditable="true">Selected Items</p>
+          <div class="selected-val"></div>
 
-                <p>Status</p>
-                <div class="containersub-sub">
-                    <div class="status">0</div>
-                    <div class="max-weight">0</div>
-                </div>
-            </div>
+          <p>Status</p>
+          <div class="containersub-sub">
+            <div class="status">0</div>
+            <div class="max-weight">0</div>
+          </div>
         </div>
+      </div>
 
-        <div class="last-btns">
-            <button class="submit">submit Items</button>
-            <button class="clear-all">Clear all</button>
-        </div>
+      <div class="last-btns">
+        <button class="submit">Done</button>
+        <button class="clear-all">Clear all</button>
+      </div>
     </div>
 
-    <script src="assets/scripts/script.js"></script>
-</body>
+    <script type="module" src="assets/scripts/script.js"></script>
+  </body>
 </html>
